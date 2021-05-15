@@ -40,10 +40,6 @@ class App extends React.Component {
       this.setState({currentUser: userAuth})
     })
   }
-  
-  componentDidUpdate(){
-    // console.log("componentdidUpdate")
-  }
 
   componentWillUnmount(){
     this.unsubscribeFromAuth();
