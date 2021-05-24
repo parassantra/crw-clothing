@@ -5,6 +5,11 @@ import memoize from 'lodash.memoize';
 
 const selectShop = state => state.shop;
 
+export const selectIsFecthing  = createSelector(
+    [selectShop],
+    (shop) => shop.isFecthing
+)
+
 export const selectCollections = createSelector(
     [selectShop],
     (shop) => shop.collections
@@ -22,4 +27,9 @@ export const selectCollection = memoize ((collectionUrlParam) =>
         collections => 
         collections ? collections[collectionUrlParam] : null
     )
+)
+
+export const selectCollectionLoaded  = createSelector(
+    [selectShop],
+    (shop) => !!shop.collections
 )
