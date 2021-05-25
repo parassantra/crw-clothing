@@ -50,10 +50,10 @@ firebase.initializeApp(config);
 export const auth = firebase.auth();
 export const firestore= firebase.firestore();
 
-const provider = new firebase.auth.GoogleAuthProvider();
-provider.setCustomParameters({prompt: 'select_account'});
+export const googleProvider = new firebase.auth.GoogleAuthProvider();
+googleProvider.setCustomParameters({prompt: 'select_account'});
 
-export const signInWithGoogle = () => auth.signInWithPopup(provider);
+export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
 
 export const convertCollectionSnapshotToMap = (collections) =>{
   const transformedCollection = collections.docs.map( doc => {
@@ -70,5 +70,15 @@ export const convertCollectionSnapshotToMap = (collections) =>{
     return accumulator
   },{})
 }
+
+export const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    //check user already logged in
+    const unsubscribe = auth.onAuthStateChanged(userAuth => {
+      unsubscribe();
+      resolve(userAuth);
+    }, reject);
+  });
+};
 
 export default firebase;
