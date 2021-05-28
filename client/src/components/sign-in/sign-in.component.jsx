@@ -1,44 +1,38 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
 import './sign-in.styles.scss'
 import { googleSignInStart, emailSignInStart } from '../../redux/user/user.actions';
 import { connect } from 'react-redux';
-class Signin extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            email:'',
-            password:''
-        }
-    }
 
-    handleSubmit = async event =>{
+const  Signin = ({googleSignInStart, emailSignInStart}) => {
+
+    const [userCredentials, setCredentials] = useState({email:'', password:''})
+    const { email, password } = userCredentials;
+
+    const handleSubmit = async event =>{
         event.preventDefault();
-        const { email, password } = this.state;
-        const { emailSignInStart } = this.props
+        
         emailSignInStart(email, password)
     }
 
-    handleChange = e => {
+    const handleChange = e => {
         const {value, name} = e.target;
-        this.setState({ [name]: value })
+        setCredentials({...userCredentials,  [name]: value })
     }
 
-    render() {
-        const {email, password} = this.state;
-        const {googleSignInStart} = this.props;
+    
         return (
             <div className='sign-in'>
                 <h2>I already have an account</h2>
                 <span>Sign in with your email and password</span>
 
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={handleSubmit}>
                     <FormInput 
                     name='email' 
                     value={email} 
                     type='email' 
-                    handleChange={this.handleChange}
+                    handleChange={handleChange}
                     label='email' 
                     required
                     />
@@ -46,7 +40,7 @@ class Signin extends Component {
                     name='password' 
                     value={password} 
                     type='password' 
-                    handleChange={this.handleChange}
+                    handleChange={handleChange}
                     label='password' 
                     required 
                     />
@@ -57,7 +51,6 @@ class Signin extends Component {
                 </form>
             </div>
         )
-    }
 }
 
 const mapDispatchToProps = dispatch => ({
