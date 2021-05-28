@@ -2,8 +2,7 @@
   "name": "crwn-clothing-canada-server",
   "version": "1.0.0",
   "engines": {
-      "node": "14.16.0",
-      "npm": "6.4.1"
+      "node": "14.16.0"
   },
   "scripts": {
     "client": "cd client && npm start",
