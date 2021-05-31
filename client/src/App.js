@@ -8,7 +8,7 @@ import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up
 import { connect } from 'react-redux';
 import { selectCurrentuser } from './redux/user/user.selector';
 import { createStructuredSelector } from 'reselect';
-import './App.css';
+import './App.scss';
 import { checkUserSession } from './redux/user/user.actions';
 
 const App = ({checkUserSession, currentUser}) => {

@@ -12,6 +12,9 @@
       background-size: cover;
       background-position: center;
       margin-bottom: 5px;
+      @media screen and (max-width: 800px){
+        height: 90%;
+      }
     }
 
     &:hover{
@@ -41,6 +44,19 @@
       .price {
         width: 10%;
       }
+      @media screen and (max-width: 800px){
+        width: 80%;
+        height: 10%;
+        font-size: 15px;
+        .name {
+          width: 60%;
+          margin-bottom: 15px;
+        }
+    
+        .price {
+          width: 10%;
+        }
+      }
     }
     .custom-button{
       width: 80%;
@@ -48,5 +64,25 @@
       position: absolute;
       top:255px;
       display: none;
+      @media screen and (max-width: 800px){
+        display: block;
+        opacity: 0.9;
+        min-width: unset;
+        padding: 0 10px;
+      }
+    }
+
+    @media screen and (max-width: 800px){
+      width: 40vw;
+      &:hover{
+        .image{
+          opacity: unset;
+        }
+  
+        .custom-button{
+          opacity: unset;
+          display: flex;
+        }
+      }
     }
 }
